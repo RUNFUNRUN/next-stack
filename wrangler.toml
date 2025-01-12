@@ -8,6 +8,9 @@ compatibility_flags = ["nodejs_compat"]
 # Assets used for files and cache priming.
 assets = { directory = ".open-next/assets", binding = "ASSETS" }
 
+[observability.logs]
+enabled = true
+
 [[d1_databases]]
 binding = "DB"
 database_name = "next-stack"
