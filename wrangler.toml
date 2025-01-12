@@ -2,7 +2,7 @@
 name = "next-stack"
 main = ".open-next/worker.js"
 
-compatibility_date = "2024-12-20"
+compatibility_date = "2025-01-09"
 compatibility_flags = ["nodejs_compat"]
 
 # Assets used for files and cache priming.
