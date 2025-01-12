@@ -1,13 +1,12 @@
 import { getAuth } from '@/lib/auth';
-import { schema } from '@/lib/schema';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
-import { eq } from 'drizzle-orm';
-import { drizzle } from 'drizzle-orm/d1';
+import type { Session, User } from 'better-auth';
 import { createMiddleware } from 'hono/factory';
 
 export const authMiddleware = createMiddleware<{
   Variables: {
-    session: typeof schema.user.$inferSelect;
+    session: Session;
+    user: User;
   };
 }>(async (c, next) => {
   try {
@@ -19,16 +18,8 @@ export const authMiddleware = createMiddleware<{
       return c.json({}, 401);
     }
 
-    const db = drizzle(env.DB, { schema });
-
-    const user = await db.query.user.findFirst({
-      where: eq(schema.user.id, session.user.id),
-    });
-    if (!user) {
-      return c.json({}, 401);
-    }
-
-    c.set('session', user);
+    c.set('session', session.session);
+    c.set('user', session.user);
     await next();
   } catch {
     return c.json({}, 500);

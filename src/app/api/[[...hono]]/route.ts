@@ -12,7 +12,7 @@ const app = new Hono()
     return auth.handler(c.req.raw);
   })
   .get('/hello', authMiddleware, (c) => {
-    return c.json({ message: `Hello ${c.var.session.name} from Hono!` });
+    return c.json({ message: `Hello ${c.var.user.name} from Hono!` });
   });
 
 export type AppType = typeof app;
