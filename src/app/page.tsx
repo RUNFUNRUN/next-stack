@@ -8,7 +8,7 @@ import { headers } from 'next/headers';
 
 const Home = async () => {
   const { env } = await getCloudflareContext();
-  const auth = await getAuth(env.DB);
+  const auth = getAuth(env.DB);
   const session = await auth.api.getSession({ headers: await headers() });
 
   return (

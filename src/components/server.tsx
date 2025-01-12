@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 
 const UserInfo = async () => {
   const { env } = await getCloudflareContext();
-  const auth = await getAuth(env.DB);
+  const auth = getAuth(env.DB);
   const session = await auth.api.getSession({ headers: await headers() });
   return session ? (
     <pre className='whitespace-pre-wrap break-all p-4 text-left border-black border rounded-lg'>
