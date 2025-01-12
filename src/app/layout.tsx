@@ -1,3 +1,4 @@
+import { QueryProvider } from '@/components/providers/query-provider';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={cn(inter.className, 'flex flex-col min-h-dvh')}>
-        {children}
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );

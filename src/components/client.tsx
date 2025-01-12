@@ -2,25 +2,26 @@
 
 import type { AppType } from '@/app/api/[[...hono]]/route';
 import { useSession } from '@/lib/auth-client';
+import { useQuery } from '@tanstack/react-query';
 import { hc } from 'hono/client';
-import { useEffect, useState } from 'react';
 
 const client = hc<AppType>('/');
 
 export const Client = () => {
-  const { data: session, isPending, error: _error } = useSession();
-  const [honoMessage, setHonoMessage] = useState('Loading...');
+  const { data: session, isPending, error } = useSession();
 
-  useEffect(() => {
-    (async () => {
+  const { data: honoMessage, status } = useQuery({
+    queryKey: ['hono'],
+    queryFn: async () => {
       const res = await client.api.hello.$get();
-      if (res.status === 200) {
-        setHonoMessage((await res.json()).message);
-      }
-    })();
-  }, []);
+      return (await res.json()).message;
+    },
+    enabled: !!session,
+  });
 
   if (isPending) return <p className='text-center'>Loading...</p>;
+
+  if (error) return <p className='text-center'>An error occurred.</p>;
 
   return session ? (
     <div className='space-y-2'>
@@ -30,9 +31,15 @@ export const Client = () => {
       <div>
         <p className='text-xl'>
           Hono API Response:
-          <code className='bg-slate-100 rounded-sm mx-1 p-1'>
-            {honoMessage}
-          </code>
+          {status === 'success' ? (
+            <code className='bg-slate-100 rounded-sm mx-1 p-1'>
+              {honoMessage}
+            </code>
+          ) : status === 'pending' ? (
+            <span>Loading...</span>
+          ) : (
+            status === 'error' && <span>An error occurred.</span>
+          )}
         </p>
       </div>
     </div>
