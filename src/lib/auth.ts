@@ -1,12 +1,11 @@
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { drizzle } from 'drizzle-orm/d1';
-import { schema } from './schema';
+import { getDB } from './db';
 
 export const getAuth = async (db: D1Database) => {
   return betterAuth({
     baseURL: process.env.BETTER_AUTH_URL,
-    database: drizzleAdapter(drizzle(db, { schema }), {
+    database: drizzleAdapter(getDB(db), {
       provider: 'sqlite',
     }),
     socialProviders: {
