@@ -5,6 +5,7 @@ import { SignOut } from '@/components/sign-out';
 import { getAuth } from '@/lib/auth';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { headers } from 'next/headers';
+import Link from 'next/link';
 
 const Home = async () => {
   const { env } = await getCloudflareContext();
@@ -18,6 +19,14 @@ const Home = async () => {
         <p className='text-xl'>
           Next.js + OpenNext + Cloudflare Workers + Hono + Drizzle + D1 + Better
           Auth
+        </p>
+        <p className='text-lg'>
+          <Link
+            href='https://github.com/RUNFUNRUN/next-stack'
+            className='underline'
+          >
+            https://github.com/RUNFUNRUN/next-stack
+          </Link>
         </p>
         <div>{session ? <SignOut /> : <SignIn />}</div>
       </header>
