@@ -5,7 +5,7 @@ import { headers } from 'next/headers';
 import { Suspense } from 'react';
 
 const UserInfo = async () => {
-  const { env } = await getCloudflareContext();
+  const { env } = getCloudflareContext();
   const auth = getAuth(env.DB);
   const session = await auth.api.getSession({ headers: await headers() });
   return session ? (

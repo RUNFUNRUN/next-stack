@@ -7,8 +7,10 @@ import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { headers } from 'next/headers';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 const Home = async () => {
-  const { env } = await getCloudflareContext();
+  const { env } = getCloudflareContext();
   const auth = getAuth(env.DB);
   const session = await auth.api.getSession({ headers: await headers() });
 

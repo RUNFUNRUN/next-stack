@@ -6,8 +6,8 @@ import { authMiddleware } from './middleware';
 
 const app = new Hono()
   .basePath('/api')
-  .on(['GET', 'POST'], '/auth/**', async (c) => {
-    const { env } = await getCloudflareContext();
+  .on(['GET', 'POST'], '/auth/**', (c) => {
+    const { env } = getCloudflareContext();
     const auth = getAuth(env.DB);
     return auth.handler(c.req.raw);
   })

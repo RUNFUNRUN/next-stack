@@ -10,7 +10,7 @@ export const authMiddleware = createMiddleware<{
   };
 }>(async (c, next) => {
   try {
-    const { env } = await getCloudflareContext();
+    const { env } = getCloudflareContext();
     const auth = getAuth(env.DB);
 
     const session = await auth.api.getSession({ headers: c.req.raw.headers });
