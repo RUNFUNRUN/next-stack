@@ -1,6 +1,7 @@
-import cache from '@opennextjs/cloudflare/kvCache';
+import type { OpenNextConfig } from '@opennextjs/aws/types/open-next.js';
+import cache from '@opennextjs/cloudflare/kv-cache';
 
-const config = {
+export default {
   default: {
     override: {
       wrapper: 'cloudflare-node',
@@ -11,7 +12,6 @@ const config = {
       queue: 'dummy',
     },
   },
-
   middleware: {
     external: true,
     override: {
@@ -20,6 +20,4 @@ const config = {
       proxyExternalRequest: 'fetch',
     },
   },
-};
-
-export default config;
+} satisfies OpenNextConfig;

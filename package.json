@@ -33,6 +33,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@cloudflare/workers-types": "4.20250204.0",
+    "@opennextjs/aws": "3.4.2",
     "@opennextjs/cloudflare": "0.4.7",
     "@tailwindcss/postcss": "^4.0.5",
     "@types/node": "22.13.1",
