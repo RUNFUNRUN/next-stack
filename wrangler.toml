@@ -15,7 +15,3 @@ enabled = true
 binding = "DB"
 database_name = "next-stack"
 database_id = "7b3849e2-cb4b-41c7-8186-0002d643bf67"
-
-[[kv_namespaces]]
-binding = "NEXT_CACHE_WORKERS_KV"
-id = "c870fe538e004eaf94519ea79b7a88dc"
