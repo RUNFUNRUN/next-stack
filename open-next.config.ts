@@ -1,21 +1,7 @@
-import type { OpenNextConfig } from '@opennextjs/aws/types/open-next.js';
+// default open-next.config.ts file created by @opennextjs/cloudflare
+import { defineCloudflareConfig } from '@opennextjs/cloudflare/config';
+import kvIncrementalCache from '@opennextjs/cloudflare/overrides/incremental-cache/kv-incremental-cache';
 
-export default {
-  default: {
-    override: {
-      wrapper: 'cloudflare-node',
-      converter: 'edge',
-      incrementalCache: 'dummy',
-      tagCache: 'dummy',
-      queue: 'dummy',
-    },
-  },
-  middleware: {
-    external: true,
-    override: {
-      wrapper: 'cloudflare-edge',
-      converter: 'edge',
-      proxyExternalRequest: 'fetch',
-    },
-  },
-} satisfies OpenNextConfig;
+export default defineCloudflareConfig({
+  incrementalCache: kvIncrementalCache,
+});
