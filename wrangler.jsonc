@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "next-stack",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-04-13",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "logs": {
+      "enabled": true
+    }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "next-stack",
+      "database_id": "7b3849e2-cb4b-41c7-8186-0002d643bf67"
+    }
+  ]
+}
