@@ -9,15 +9,14 @@
     "binding": "ASSETS"
   },
   "observability": {
-    "logs": {
-      "enabled": true
-    }
+    "enabled": true
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "next-stack",
-      "database_id": "7b3849e2-cb4b-41c7-8186-0002d643bf67"
+      "database_id": "e3271ec8-b866-4811-a035-f087cf3f0b1a",
+      "migrations_dir": "drizzle"
     }
   ]
 }
